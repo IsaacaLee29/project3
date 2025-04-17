@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Echo Blue Music</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Uto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Sans+MS&family=Dancing+Script&family=Montserrat&family=Abril+Fatface&family=Quicksand&family=Pacifico&family=Anton&family=Exo&family=Roboto+Slab&family=Cinzel&family=Amatic+SC&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Loading Spinner -->
+  <div id="loading-spinner">Loading Music Magic...</div>
+
+  <!-- Main Page Section -->
+  <section class="main-body">
+    <div class="body-container">
+      <!-- Background Music -->
+      <audio id="music-player" preload="auto">
+        <source src="./mp3/never-gonna-give-u-up.mp3" type="audio/mp3" />
+        Your browser does not support the audio element.
+      </audio>
+
+      <!-- Top Row of Scrolling Album Covers (Right to Left) -->
+      <div class="album-covers"></div>
+
+      <!-- Bottom Row of Scrolling Album Covers (Left to Right) -->
+      <div class="album-covers second-row"></div>
+
+      <!-- Title and Button -->
+      <div class="content">
+        <h1>Echo Blue Music</h1>
+        <p class="bottom-left-text">Where Music Never Stops. Listen To All The Hot Music Right Now.</p>
+        <button class="bottom-right-button" onclick="playSong()">Listen Now</button>
+      </div>
+    </div>
+
+    <!-- Carousel Section -->
+    <div class="navbar">
+      <div class="parent-navbar">
+        <div class="carousel-container">
+          <!-- Arrow Buttons -->
+          <button class="arrow-left">←</button>
+          <div class="carousel"></div>
+          <button class="arrow-right">→</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Mood-Based Song of the Day Section -->
+<div class="mood-section">
+    <div class="note-background">
+        <span class="note">🎵</span>
+        <span class="note">🎶</span>
+        <span class="note">🎼</span>
+        <span class="note">🎧</span>
+        <span class="note">🎤</span>
+      </div>
+      
+    <h2>🎵 Song of the Day</h2>
+    <label for="mood-select">Pick your mood:</label>
+    <select id="mood-select">
+      <option value="">-- Choose a Mood --</option>
+      <option value="hype">Hype</option>
+      <option value="chill">Chill</option>
+      <option value="sad">Sad</option>
+      <option value="happy">Happy</option>
+    </select>
+  
+    <button id="get-song">Find Song</button>
+  
+    <div id="song-loading" class="hidden">Loading 🎧...</div>
+  
+    <div id="song-display" class="hidden">
+        <div class="song-info-container">
+          <img id="song-image" alt="Album Cover" />
+          <div class="song-details">
+            <h3 id="song-title"></h3>
+            <p id="song-artist"></p>
+            <p id="song-popularity"></p>
+            <p id="song-followers"></p>
+            <p id="song-tracks"></p>
+            <audio id="song-preview" controls></audio>
+          </div>
+        </div>
+      </div>
+      
+  
+    <!-- Second Page Section Placeholder -->
+    <div class="second-container">
+      <div class="second-text"></div>
+      <div class="music-table"></div>
+      <div class="second-button"></div>
+      <div class="second-image"></div>
+    </div>
+
+    <!-- Divider Section -->
+    <div class="divider-container">
+      <div class="divider-animation"></div>
+    </div>
+
+    <!-- Third Section Placeholder -->
+    <div class="third-container">
+      <div class="third-text"></div>
+      <div class="third-image"></div>
+      <div class="third-image-sticky"></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-links"></div>
+      <div class="footer-image"></div>
+      <div class="footer-icons"></div>
+      <div class="footer-text"></div>
+    </div>
+  </section>
+
+  <!-- Main Script -->
+  <script src="main.js"></script>
+</body>
+</html>
+
+
