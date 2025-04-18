@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Echo Blue - Playlist Builder</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="page2-grid">
+
+    <!-- Left Side (Navigation & Dark Mode) -->
+    <aside class="sidebar">
+        <div class="logo-container">
+            <img src="./img/ChatGPT Image Apr 9, 2025, 03_34_22 PM.png" alt="Echo Blue Logo" class="echo-logo" />
+          </div>
+          
+      <button id="dark-mode-toggle">Toggle Dark Mode</button>
+        <div class="side-note">
+            <p>Build your vibe. Compare albums. Discover more.</p>
+            <a href="index.html" class="home-link">Home</a>
+        </div>
+    </aside>
+
+    <!-- Right Side (Main Content) -->
+    <main class="main-content">
+      <!-- Playlist Builder Section -->
+      <section class="playlist-builder">
+        <h2>📀 Build a Playlist</h2>
+        <label>Genre:</label>
+        <select id="genre-select"><option value="">--Choose Genre--</option></select>
+
+        <label>Artist:</label>
+        <select id="artist-select"><option value="">--Choose Artist--</option></select>
+
+        <label>Album:</label>
+        <select id="album-select"><option value="">--Choose Album--</option></select>
+
+        <label>Playlist Name:</label>
+        <input type="text" id="playlist-name" placeholder="My Vibe Mix" />
+
+        <button id="add-to-playlist">Add to Playlist</button>
+
+        <ul id="playlist-display"></ul>
+      </section>
+
+      <!-- Album Comparison Section -->
+      <section class="album-compare">
+        <h2>🆚 Compare Two Albums</h2>
+
+        <select id="compare-album-1"><option value="">-- Album 1 --</option></select>
+        <select id="compare-album-2"><option value="">-- Album 2 --</option></select>
+
+        <button id="compare-button">Compare</button>
+
+        <div id="comparison-result"></div>
+      </section>
+
+      <!-- Search Bar Section -->
+      <section class="search-section">
+        <h2>🔍 Search Music</h2>
+        <input type="text" id="search-input" placeholder="Search artist or album..." />
+        <button id="search-button">Search</button>
+        <ul id="search-results"></ul>
+      </section>
+    </main>
+
+  </div>
+
+  <script src="page2.js"></script>
+</body>
+</html>

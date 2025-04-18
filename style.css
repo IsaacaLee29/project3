@@ -139,6 +139,20 @@ body {
     z-index: 10;
 }
 
+.mini-play-link {
+    font-size: 1.4em;
+    margin-left: 10px;
+    text-decoration: none;
+    color: #F58F29;
+    transition: transform 0.2s ease;
+  }
+  
+  .mini-play-link:hover {
+    transform: scale(1.4);
+    color: #e47d1b;
+  }
+
+  
 /* Bottom Right Button */
 .bottom-right-button {
     position: absolute;
@@ -319,36 +333,48 @@ body {
     font-family: 'Amatic SC', cursive;
 }
 
-
 .mood-section {
+    position: relative;
+    z-index: 1; /* Content stays above background */
+    overflow: hidden;
+    margin-bottom: 2rem; /* Space above parallax */
     padding: 2rem;
     background: #0a1e34;
     color: white;
     text-align: center;
   }
   
-  .mood-section select,
-  .mood-section button {
-    font-size: 1rem;
-    padding: 0.5rem;
-    margin: 0.5rem;
+  .mood-controls {
+    max-width: 400px;
+    margin: 1rem auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
   }
   
+  .mood-controls select,
+  .mood-controls button {
+    flex: 1 1 auto;
+    max-width: 180px;
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+  
+  /* Loading message */
   #song-loading {
     font-size: 1.2rem;
     margin-top: 1rem;
   }
   
+  /* Song display area */
   #song-display img {
     width: 200px;
     height: 200px;
     object-fit: cover;
     border: 3px solid white;
     margin-top: 1rem;
-  }
-  
-  .hidden {
-    display: none;
   }
   
   .song-info-container {
@@ -369,8 +395,13 @@ body {
   .song-details h3 {
     margin: 0.5rem 0;
   }
-  /* Container for floating notes */
-.note-background {
+  
+  .hidden {
+    display: none;
+  }
+  
+  /* Floating notes animation */
+  .note-background {
     position: absolute;
     top: 0;
     left: 0;
@@ -378,20 +409,18 @@ body {
     height: 100%;
     pointer-events: none;
     overflow: hidden;
-    z-index: 0; /* BELOW all other content */
+    z-index: 0;
   }
   
-  /* Music note style */
   .note {
     position: absolute;
     font-size: 1.5rem;
     opacity: 0.3;
-    animation: floatNote 10s linear forwards;
+    animation: floatNote 5s linear forwards;
     top: 100%;
     z-index: 0;
   }
   
-  /* Animation to float upward */
   @keyframes floatNote {
     0% {
       transform: translateY(0) scale(1);
@@ -406,10 +435,174 @@ body {
     }
   }
   
-  /* Ensure the mood section is relative to contain the absolute background */
-  .mood-section {
-    position: relative;
-    z-index: 1; /* Content stays above background */
-    overflow: hidden;
+  
+  /*-----------------------------------------------------------------------------------*/
+  /* Page 2 Grid Layout */
+.page2-grid {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    color: #111;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .sidebar {
+    background-color: #102542;
+    color: white;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .echo-logo {
+    width: 100%;
+    max-width: 160px; /* Matches button width */
+    height: auto;
+    display: block;
+  }
+  
+  
+  
+  .sidebar h1 {
+    font-size: 2rem;
+  }
+  .home-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #f58f29;
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  .home-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+
+  
+  #dark-mode-toggle {
+    background: #f58f29;
+    color: white;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .side-note {
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+  
+  .main-content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  
+  .playlist-builder,
+  .album-compare,
+  .search-section {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  select, input {
+    margin: 0.5rem 0;
+    padding: 0.4rem;
+    width: 100%;
+  }
+  
+  button {
+    background: #008Af8;
+    color: white;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background: #006dcc;
+  }
+  
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .dark-mode {
+    background-color: #0a1e34;
+    color: #eaeaea;
+  }
+  
+  .dark-mode .main-content section {
+    background-color: #162d4d;
+  }
+  
+  .dark-mode input,
+  .dark-mode select {
+    background-color: #102542;
+    color: white;
+    border: 1px solid #eaeaea;
+  }
+  
+  /*------------------------------------------------*/
+  /* Parallax Section */
+.parallax-section {
+    background-image: url('./img/ChatGPT\ Image\ Apr\ 17\,\ 2025\,\ 06_34_46\ PM.png'); /* Replace with your image path */
+    min-height: 700px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+  }
+  
+  /* Footer */
+  .footer-main {
+    background-color: #102542;
+    color: white;
+    text-align: center;
+    font-size: 0.95rem;
+    padding: 4rem 2rem;
+  }
+  
+  .footer-links {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .footer-links a {
+    color: #F58F29;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  .footer-links a:hover {
+    color: white;
+  }
+  
+  .footer-copy {
+    opacity: 0.7;
+    font-size: 0.85rem;
   }
   

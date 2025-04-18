@@ -1,3 +1,5 @@
+
+
 function playSong() {
     const audio = document.getElementById("music-player");
     audio.play();
@@ -212,3 +214,4 @@ function spawnNote() {
 setInterval(spawnNote, 400);
 
   
+

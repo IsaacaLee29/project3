@@ -33,7 +33,13 @@
       <!-- Title and Button -->
       <div class="content">
         <h1>Echo Blue Music</h1>
-        <p class="bottom-left-text">Where Music Never Stops. Listen To All The Hot Music Right Now.</p>
+        <div class="bottom-left-text">
+            <p>
+              Where Music Never Stops. Listen To All The Hot Music Right Now.
+              <a href="playlist.html" class="mini-play-link" title="Go to Playlist Builder">▶</a>
+            </p>
+          </div>
+          
         <button class="bottom-right-button" onclick="playSong()">Listen Now</button>
       </div>
     </div>
@@ -52,73 +58,63 @@
 
 
     <!-- Mood-Based Song of the Day Section -->
+<!-- Mood-Based Song of the Day Section -->
 <div class="mood-section">
     <div class="note-background">
-        <span class="note">🎵</span>
-        <span class="note">🎶</span>
-        <span class="note">🎼</span>
-        <span class="note">🎧</span>
-        <span class="note">🎤</span>
-      </div>
-      
-    <h2>🎵 Song of the Day</h2>
-    <label for="mood-select">Pick your mood:</label>
-    <select id="mood-select">
-      <option value="">-- Choose a Mood --</option>
-      <option value="hype">Hype</option>
-      <option value="chill">Chill</option>
-      <option value="sad">Sad</option>
-      <option value="happy">Happy</option>
-    </select>
+      <span class="note">🎵</span>
+      <span class="note">🎶</span>
+      <span class="note">🎼</span>
+      <span class="note">🎧</span>
+      <span class="note">🎤</span>
+    </div>
   
-    <button id="get-song">Find Song</button>
+    <h2>🎵 Song of the Day</h2>
+  
+    <!-- Wrapped inputs inside mood-controls -->
+    <div class="mood-controls">
+      <label for="mood-select">Pick your mood:</label>
+      <select id="mood-select">
+        <option value="">-- Choose a Mood --</option>
+        <option value="hype">Hype</option>
+        <option value="chill">Chill</option>
+        <option value="sad">Sad</option>
+        <option value="happy">Happy</option>
+      </select>
+  
+      <button id="get-song">Find Song</button>
+    </div>
   
     <div id="song-loading" class="hidden">Loading 🎧...</div>
   
     <div id="song-display" class="hidden">
-        <div class="song-info-container">
-          <img id="song-image" alt="Album Cover" />
-          <div class="song-details">
-            <h3 id="song-title"></h3>
-            <p id="song-artist"></p>
-            <p id="song-popularity"></p>
-            <p id="song-followers"></p>
-            <p id="song-tracks"></p>
-            <audio id="song-preview" controls></audio>
-          </div>
+      <div class="song-info-container">
+        <img id="song-image" alt="Album Cover" />
+        <div class="song-details">
+          <h3 id="song-title"></h3>
+          <p id="song-artist"></p>
+          <p id="song-popularity"></p>
+          <p id="song-followers"></p>
+          <p id="song-tracks"></p>
+          <audio id="song-preview" controls></audio>
         </div>
       </div>
-      
+    </div>
   
-    <!-- Second Page Section Placeholder -->
-    <div class="second-container">
-      <div class="second-text"></div>
-      <div class="music-table"></div>
-      <div class="second-button"></div>
-      <div class="second-image"></div>
-    </div>
-
-    <!-- Divider Section -->
-    <div class="divider-container">
-      <div class="divider-animation"></div>
-    </div>
-
-    <!-- Third Section Placeholder -->
-    <div class="third-container">
-      <div class="third-text"></div>
-      <div class="third-image"></div>
-      <div class="third-image-sticky"></div>
-    </div>
-
+    <!-- Parallax Section -->
+    <div class="parallax-section"></div>
+  
     <!-- Footer -->
-    <div class="footer">
-      <div class="footer-links"></div>
-      <div class="footer-image"></div>
-      <div class="footer-icons"></div>
-      <div class="footer-text"></div>
-    </div>
-  </section>
-
+    <footer class="footer-main">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="playlist.html">Playlist Builder</a>
+        <a href="#">Contact</a>
+        <a href="#">About</a>
+      </div>
+      <p class="footer-copy">© 2025 Echo Blue Music. All rights reserved.</p>
+    </footer>
+  </div>
+  
   <!-- Main Script -->
   <script src="main.js"></script>
 </body>
