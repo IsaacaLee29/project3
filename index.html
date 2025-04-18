@@ -13,7 +13,7 @@
 
 <body>
   <!-- Loading Spinner -->
-  <div id="loading-spinner">Loading Music Magic...</div>
+  <div id="loading-spinner">Loading...</div>
 
   <!-- Main Page Section -->
   <section class="main-body">
@@ -24,7 +24,7 @@
         Your browser does not support the audio element.
       </audio>
 
-      <!-- Top Row of Scrolling Album Covers (Right to Left) -->
+      <!-- Top Row Album Covers -->
       <div class="album-covers"></div>
 
       <!-- Bottom Row of Scrolling Album Covers (Left to Right) -->
@@ -34,14 +34,15 @@
       <div class="content">
         <h1>Echo Blue Music</h1>
         <div class="bottom-left-text">
-            <p>
-              Where Music Never Stops. Listen To All The Hot Music Right Now.
-              <a href="playlist.html" class="mini-play-link" title="Go to Playlist Builder">▶</a>
-            </p>
-          </div>
-          
-        <button class="bottom-right-button" onclick="playSong()">Listen Now</button>
+          <p>
+            Where Music Never Stops. Listen To All The Hot Music Right Now.
+            <a href="#" class="mini-play-link" title="Play Music" onclick="playSong()">▶</a>
+          </p>
+        </div>
+      
+        <a href="playlist.html" class="bottom-right-button">Listen Now</a>
       </div>
+      
     </div>
 
     <!-- Carousel Section -->
@@ -57,8 +58,7 @@
     </div>
 
 
-    <!-- Mood-Based Song of the Day Section -->
-<!-- Mood-Based Song of the Day Section -->
+<!-- Mood-Based Song of the Day -->
 <div class="mood-section">
     <div class="note-background">
       <span class="note">🎵</span>
@@ -70,7 +70,7 @@
   
     <h2>🎵 Song of the Day</h2>
   
-    <!-- Wrapped inputs inside mood-controls -->
+    <!--mood-controls -->
     <div class="mood-controls">
       <label for="mood-select">Pick your mood:</label>
       <select id="mood-select">
@@ -99,8 +99,7 @@
         </div>
       </div>
     </div>
-  
-    <!-- Parallax Section -->
+
     <div class="parallax-section"></div>
   
     <!-- Footer -->

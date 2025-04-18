@@ -1,13 +1,13 @@
 
-
+//play a song
 function playSong() {
     const audio = document.getElementById("music-player");
     audio.play();
   }
   
-
+//api
 const API_URL = "https://music.is120.ckearl.com";
-
+//genre
 function getGenreFont(genre) {
     const fontMap = {
         pop: "'Pacifico', cursive",
@@ -29,7 +29,7 @@ function getGenreBorder(genre) {
     };
     return borderMap[genre] || "2px solid white";
 }
-
+//carousel
 function populateCarousel(data) {
     const carousel = document.querySelector(".carousel");
     let allCards = [];
@@ -49,7 +49,7 @@ function populateCarousel(data) {
         });
     });
 
-    // Carousel movement logic (now works dynamically)
+    // carousel movement
     let currentIndex = 0;
     const cardWidth = 250;
     const margin = 30;
@@ -65,11 +65,11 @@ function populateCarousel(data) {
         carousel.style.transform = `translateX(-${(currentIndex) * (cardWidth + margin)}px)`;
     }
 
-    // Add event listeners AFTER cards exist
     document.querySelector('.arrow-left').addEventListener('click', () => moveCarousel('left'));
     document.querySelector('.arrow-right').addEventListener('click', () => moveCarousel('right'));
 }
 
+//album covers
 function populateScrollingCovers(data) {
     const topRow = document.querySelector(".album-covers");
     const bottomRow = document.querySelector(".album-covers.second-row");
@@ -88,7 +88,6 @@ function populateScrollingCovers(data) {
       });
     });
   
-    // Shuffle and split into two different sets
     const shuffled = allAlbums.sort(() => Math.random() - 0.5);
     const topAlbums = shuffled.slice(0, 40);
     const bottomAlbums = shuffled.slice(40, 80);
@@ -113,11 +112,11 @@ function populateScrollingCovers(data) {
   }
   
 
-// FINAL FETCH – this is the only one you need
+
 fetch(API_URL)
   .then(res => res.json())
   .then(data => {
-    console.log("Correct Array:", data.data.spotify_top_genre_artists); // should now be an array
+    console.log("Correct Array:", data.data.spotify_top_genre_artists); 
 
     const spinner = document.getElementById("loading-spinner");
     if (spinner) spinner.style.display = "none";
@@ -139,7 +138,7 @@ fetch(API_URL)
     happy: ["pop", "latin", "dance", "indie"]
   };
   
-  
+  //getting stuff
   document.getElementById("get-song").addEventListener("click", () => {
     const mood = document.getElementById("mood-select").value;
     const loading = document.getElementById("song-loading");
@@ -191,7 +190,7 @@ fetch(API_URL)
       });
   });
   
-// 🎶 Floating notes animation
+// Floating notes animation
 const noteTypes = ["🎵", "🎶", "🎼", "🎧", "🎤"];
 const noteContainer = document.querySelector(".note-background");
 

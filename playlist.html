@@ -11,7 +11,7 @@
 <body>
   <div class="page2-grid">
 
-    <!-- Left Side (Navigation & Dark Mode) -->
+    <!-- Left Side -->
     <aside class="sidebar">
         <div class="logo-container">
             <img src="./img/ChatGPT Image Apr 9, 2025, 03_34_22 PM.png" alt="Echo Blue Logo" class="echo-logo" />
@@ -24,9 +24,9 @@
         </div>
     </aside>
 
-    <!-- Right Side (Main Content) -->
+    <!-- Right Side  -->
     <main class="main-content">
-      <!-- Playlist Builder Section -->
+      <!-- Playlist Builder  -->
       <section class="playlist-builder">
         <h2>📀 Build a Playlist</h2>
         <label>Genre:</label>
@@ -46,7 +46,7 @@
         <ul id="playlist-display"></ul>
       </section>
 
-      <!-- Album Comparison Section -->
+      <!-- Album Comparison -->
       <section class="album-compare">
         <h2>🆚 Compare Two Albums</h2>
 
@@ -58,16 +58,24 @@
         <div id="comparison-result"></div>
       </section>
 
-      <!-- Search Bar Section -->
+      <!-- Search Bar -->
       <section class="search-section">
         <h2>🔍 Search Music</h2>
         <input type="text" id="search-input" placeholder="Search artist or album..." />
         <button id="search-button">Search</button>
         <ul id="search-results"></ul>
       </section>
+      <section class="full-view-section">
+        <h2> Top 100 Albums</h2>
+        <button id="view-mode-toggle">Toggle View</button>
+        <div id="full-music-list"></div>
+      </section>
     </main>
-
+    
   </div>
+
+  
+  
 
   <script src="page2.js"></script>
 </body>

@@ -1,4 +1,4 @@
-// ===== PAGE 2 JAVASCRIPT FOR PLAYLIST BUILDER =====
+//page 2
 
 const API_URL = "https://music.is120.ckearl.com";
 
@@ -20,35 +20,48 @@ const searchButton = document.getElementById("search-button");
 const searchResults = document.getElementById("search-results");
 
 const darkToggle = document.getElementById("dark-mode-toggle");
+const viewToggle = document.getElementById("view-toggle");
+const fullListContainer = document.getElementById("full-music-list");
+const fullListToggle = document.getElementById("view-mode-toggle");
 let allData = [];
 
-// DARK MODE TOGGLE
-darkToggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
+// dark mode
+function applyThemeStyles() {
+  const isDark = document.body.classList.contains("dark-mode");
 
   const labels = document.querySelectorAll("label, h2, h3, p");
   labels.forEach(el => {
-    el.style.color = "white";
+    el.style.color = isDark ? "white" : "#111";
   });
 
   const inputs = document.querySelectorAll("input, select, textarea");
   inputs.forEach(el => {
-    el.style.color = document.body.classList.contains("dark-mode") ? "white" : "#111";
+    el.style.color = isDark ? "white" : "#111";
+    el.style.backgroundColor = isDark ? "#102542" : "white";
+    el.style.borderColor = isDark ? "#eaeaea" : "#ccc";
   });
 
   const resultItems = document.querySelectorAll("#search-results li");
   resultItems.forEach(el => {
-    el.style.color = document.body.classList.contains("dark-mode") ? "white" : "#111";
+    el.style.color = isDark ? "white" : "#111";
   });
+}
+
+darkToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+  applyThemeStyles();
 });
 
-// Fetch music data
+// music data
 fetch(API_URL)
   .then(res => res.json())
   .then(data => {
     allData = data.data.spotify_top_genre_artists;
     populateGenres();
     populateCompareDropdowns();
+    loadPlaylistFromStorage();
+    renderFullMusicList();
+    applyThemeStyles(); 
   })
   .catch(err => console.error("API error:", err));
 
@@ -71,7 +84,7 @@ genreSelect.addEventListener("change", () => {
 
   const selectedGenre = genreSelect.value;
   const genreObj = allData.find(g => g.genre_name === selectedGenre);
-  if (!genreObj) return;
+  if (!genreObj || !genreObj.artists) return;
 
   const sortedArtists = [...genreObj.artists].sort((a, b) => a.name.localeCompare(b.name));
   sortedArtists.forEach(artist => {
@@ -90,12 +103,12 @@ artistSelect.addEventListener("change", () => {
   const selectedArtist = artistSelect.value;
   const genreObj = allData.find(g => g.genre_name === selectedGenre);
   const artistObj = genreObj?.artists.find(a => a.name === selectedArtist);
-  if (!artistObj) return;
+  if (!artistObj || !artistObj.albums) return;
 
   const sortedAlbums = [...artistObj.albums].sort((a, b) => a.name.localeCompare(b.name));
   sortedAlbums.forEach(album => {
     const opt = document.createElement("option");
-    opt.value = JSON.stringify(album);
+    opt.value = JSON.stringify({ ...album, artist: selectedArtist });
     opt.textContent = album.name;
     albumSelect.appendChild(opt);
   });
@@ -115,97 +128,104 @@ addToPlaylistBtn.addEventListener("click", () => {
   const delBtn = document.createElement("button");
   delBtn.textContent = "❌";
   delBtn.style.marginLeft = "10px";
-  delBtn.addEventListener("click", () => li.remove());
+  delBtn.addEventListener("click", () => {
+    li.remove();
+    savePlaylistToStorage();
+  });
 
   li.appendChild(delBtn);
   playlistDisplay.appendChild(li);
+  savePlaylistToStorage();
 });
 
-// Populate album comparison dropdowns
-function populateCompareDropdowns() {
-  const albums = [];
-  allData.forEach(genre => {
-    genre.artists.forEach(artist => {
-      artist.albums.forEach(album => {
-        albums.push({ name: album.name, album: album, image: album.cover_image });
-      });
+function savePlaylistToStorage() {
+  const items = [...playlistDisplay.querySelectorAll("li")].map(li => li.textContent.replace("❌", "").trim());
+  localStorage.setItem("echoPlaylist", JSON.stringify(items));
+}
+
+function loadPlaylistFromStorage() {
+  const stored = JSON.parse(localStorage.getItem("echoPlaylist")) || [];
+  stored.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    const delBtn = document.createElement("button");
+    delBtn.textContent = "❌";
+    delBtn.style.marginLeft = "10px";
+    delBtn.addEventListener("click", () => {
+      li.remove();
+      savePlaylistToStorage();
     });
-  });
-
-  const sortedAlbums = albums.sort((a, b) => a.name.localeCompare(b.name));
-
-  sortedAlbums.forEach(({ name, album }) => {
-    const opt1 = document.createElement("option");
-    opt1.value = JSON.stringify(album);
-    opt1.textContent = name;
-    compare1.appendChild(opt1);
-
-    const opt2 = document.createElement("option");
-    opt2.value = JSON.stringify(album);
-    opt2.textContent = name;
-    compare2.appendChild(opt2);
+    li.appendChild(delBtn);
+    playlistDisplay.appendChild(li);
   });
 }
 
-// Compare albums
-compareButton.addEventListener("click", () => {
-  if (!compare1.value || !compare2.value) return;
+// Render full music list with toggle view
+let isTableView = false;
+if (fullListToggle) {
+  fullListToggle.addEventListener("click", () => {
+    isTableView = !isTableView;
+    renderFullMusicList();
+  });
+}
 
-  const album1 = JSON.parse(compare1.value);
-  const album2 = JSON.parse(compare2.value);
+function renderFullMusicList() {
+  if (!fullListContainer) return;
+  fullListContainer.innerHTML = "";
 
-  compareResult.innerHTML = `
-    <h3>Comparison</h3>
-    <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;">
-      <div>
-        <p><strong>${album1.name}</strong></p>
-        <p>Tracks: ${album1.total_tracks}</p>
-        <p>Popularity: ${album1.popularity}</p>
-        <img src="${album1.cover_image}" alt="Cover 1" style="width:150px; height:150px; object-fit:cover;">
-      </div>
-      <div>
-        <p><strong>${album2.name}</strong></p>
-        <p>Tracks: ${album2.total_tracks}</p>
-        <p>Popularity: ${album2.popularity}</p>
-        <img src="${album2.cover_image}" alt="Cover 2" style="width:150px; height:150px; object-fit:cover;">
-      </div>
-    </div>
-  `;
-});
-
-// Search music
-searchButton.addEventListener("click", () => {
-  const query = searchInput.value.toLowerCase().trim();
-  if (!query) return;
-
-  let results = [];
-
+  const flatAlbums = [];
   allData.forEach(genre => {
     genre.artists.forEach(artist => {
-      if (artist.name.toLowerCase().includes(query)) {
-        results.push(`
-          <li>
-            🎤 <strong>${artist.name}</strong> (<em>${genre.genre_name}</em>)<br>
-            Followers: ${artist.followers.toLocaleString()}<br>
-            Popularity: ${artist.popularity}<br>
-            <img src="${artist.image}" alt="Artist Image" style="width:120px; height:120px; object-fit:cover; margin:10px 0;">
-          </li>
-        `);
-      }
-
       artist.albums.forEach(album => {
-        if (album.name.toLowerCase().includes(query)) {
-          results.push(`
-            <li>
-              💿 <strong>${album.name}</strong> by ${artist.name}<br>
-              Popularity: ${album.popularity} | Tracks: ${album.total_tracks}<br>
-              <img src="${album.cover_image}" alt="Album Cover" style="width:100px; height:100px; object-fit:cover; margin:5px 0;">
-            </li>
-          `);
-        }
+        flatAlbums.push({
+          genre: genre.genre_name,
+          artist: artist.name,
+          album: album.name,
+          popularity: album.popularity,
+          image: album.cover_image,
+          total_tracks: album.total_tracks,
+          followers: artist.followers
+        });
       });
     });
   });
 
-  searchResults.innerHTML = results.length ? results.join("") : "<li>No matches found.</li>";
-});
+  const topAlbums = flatAlbums.slice(0, 100);
+
+  if (isTableView) {
+    const table = document.createElement("table");
+    table.style.margin = "0 auto";
+    table.innerHTML = `
+      <tr><th>Album</th><th>Artist</th><th>Genre</th><th>Popularity</th><th>Tracks</th><th>Followers</th></tr>
+      ${topAlbums.map(a => `<tr><td>${a.album}</td><td>${a.artist}</td><td>${a.genre}</td><td>${a.popularity}</td><td>${a.total_tracks}</td><td>${a.followers.toLocaleString()}</td></tr>`).join("")}
+    `;
+    fullListContainer.appendChild(table);
+  } else {
+    const wrapper = document.createElement("div");
+    wrapper.style.display = "flex";
+    wrapper.style.flexWrap = "wrap";
+    wrapper.style.justifyContent = "center";
+    wrapper.style.gap = "1rem";
+
+    topAlbums.forEach(a => {
+      const card = document.createElement("div");
+      card.style.border = "1px solid #ccc";
+      card.style.borderRadius = "8px";
+      card.style.padding = "10px";
+      card.style.textAlign = "center";
+      card.style.width = "220px";
+      card.innerHTML = `
+        <img src="${a.image}" alt="${a.album}" style="width:100%; height:150px; object-fit:cover;">
+        <h4>${a.album}</h4>
+        <p><strong>${a.artist}</strong></p>
+        <p><em>${a.genre}</em></p>
+        <p>Popularity: ${a.popularity}</p>
+        <p>Tracks: ${a.total_tracks}</p>
+        <p>Followers: ${a.followers.toLocaleString()}</p>
+      `;
+      wrapper.appendChild(card);
+    });
+
+    fullListContainer.appendChild(wrapper);
+  }
+}

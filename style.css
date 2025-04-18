@@ -25,7 +25,7 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    overflow: hidden; /* Prevents images from spilling out */
+    overflow: hidden; 
 }
 
 #loading-spinner {
@@ -45,47 +45,45 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    animation: moveCovers 200s linear infinite; /* Same speed for top row */
+    animation: moveCovers 200s linear infinite; 
 }
 
 .cover {
-    width: 200px; /* Adjust as needed */
+    width: 200px; 
     height: 200px;
     object-fit: cover;
-    opacity: 0.7; /* Slight transparency */
-    margin-right: 20px; /* Space between album covers */
+    opacity: 0.7;
+    margin-right: 20px; 
 }
 
-/* Keyframe Animation for Album Covers (Top Row, Right to Left) */
+
 @keyframes moveCovers {
     0% {
-        transform: translateX(0%); /* Start from the right side */
+        transform: translateX(0%);
     }
     100% {
-        transform: translateX(-100%); /* Move to the left side */
+        transform: translateX(-100%); 
     }
 }
 
-/* Animated Album Covers (Bottom Row) */
+/* Animated Album Covers  */
 .album-covers.second-row {
     display: flex;
     position: absolute;
-    top: 220px; /* Move it below the first row */
+    top: 220px; 
     left: 0;
-    animation: moveCoversOpposite 200s linear infinite; /* Same speed for bottom row */
-}
+    animation: moveCoversOpposite 200s linear infinite; }
 
-/* Keyframe Animation for Album Covers (Bottom Row, Left to Right) */
+
 @keyframes moveCoversOpposite {
     0% {
-        transform: translateX(0%); /* Start from the left side */
+        transform: translateX(0%); 
     }
     100% {
-        transform: translateX(-100%); /* Move to the right side */
+        transform: translateX(-100%); 
     }
 }
 
-/* Title in the Center */
 /* Typing Animation */
 .content h1 {
     position: absolute;
@@ -96,32 +94,32 @@ body {
     font-size: 3.5em;
     font-family: 'Arial', sans-serif;
     z-index: 10;
-    white-space: nowrap; /* Prevent the text from wrapping */
-    overflow: hidden; /* Hide the extra text */
-    border-right: 5px solid orange; /* Cursor-like effect */
-    width: 0; /* Start with 0 width to animate */
+    white-space: nowrap; 
+    overflow: hidden; 
+    border-right: 5px solid orange;
+    width: 0; 
     animation: typing 4s steps(30) 1s forwards, blink 0.75s step-end infinite;
 }
 
 /* Keyframe Animation for Typing */
 @keyframes typing {
     100% {
-        width: 15ch; /* Expand to the full width of the text */
+        width: 15ch; 
     }
 }
 
-/* Cursor Blink Animation */
+
 @keyframes blink {
     50% {
         border-color: transparent;
     }
 }
 
-/* Hover Effect: Text glow and color change with move to the right */
+
 .content h1:hover {
-    color: white;; /* Change color on hover */
-    text-shadow: 0 0 20px #F58F29, 0 0 30px #F58F29, 0 0 40px #F58F29; /* Glow effect */
-    transform: translate(-50%, -50%) scale(1.1) translateX(10px); /* Slight zoom effect and move right */
+    color: white;; 
+    text-shadow: 0 0 20px #F58F29, 0 0 30px #F58F29, 0 0 40px #F58F29; 
+    transform: translate(-50%, -50%) scale(1.1) translateX(10px); 
     transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
     border-radius: 8px;
 }
@@ -159,24 +157,24 @@ body {
     right: 20px;
     bottom: 20px;
     padding: 10px 20px;
-    background-color: #F58F29; /* Button color */
+    background-color: #F58F29; 
     color: white;
     border: none;
     border-radius: 5px;
     font-size: 1.5em;
     z-index: 10;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .bottom-right-button:hover {
-    background-color: #e47d1b; /* Slightly darker on hover */
+    background-color: #e47d1b; 
 }
 
-/* Navbar Styles *//* Navbar Styles */
-/* Navbar Styles */
+
 .navbar {
     width: 100%;
-    height: 450px; /* Adjust the height of the navbar */
+    height: 450px;
     background-color: white;
     border: 5px #102542 solid;
     color: #0A1E34;
@@ -185,17 +183,17 @@ body {
 /* Parent Grid for Navbar */
 .parent-navbar {
     display: grid;
-    grid-template-columns: 1fr; /* Only one column now, taking up the whole space */
-    grid-template-rows: 1fr; /* Single row */
+    grid-template-columns: 1fr; 
+    grid-template-rows: 1fr; 
     font-size: 17.5px;
     place-items: center;
-    height: 100%; /* Ensure the grid fills the height of the navbar */
+    height: 100%;
 }
 
-/* Container for the carousel */
+
 .carousel-container {
-    width: 90%; /* Adjust width to fit better on screen */
-    height: 375px; /* Height for the visible area */
+    width: 90%; 
+    height: 375px;
     overflow: hidden;
     position: relative;
     display: flex;
@@ -210,17 +208,16 @@ body {
     align-items: center;
     flex-direction: row;
     position: relative;
-    transition: transform 0.5s ease; /* Smooth transition when moving cards */
+    transition: transform 0.5s ease; 
 }
 
-/* Styling for each card inside the carousel */
 .carousel-card {
-    width: 250px; /* Increased the width to make cards wider */
-    height: 350px; /* Adjusted height to maintain aspect ratio */
+    width: 250px; 
+    height: 350px;
     margin: 0 15px;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Box shadow for card effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -230,10 +227,9 @@ body {
 }
 
 .carousel-card img {
-    width: 100%; /* Ensure image fits within card */
-    height: 100%; /* Adjust image height proportionally */
-    object-fit: cover; /* Ensure the image fits inside the card */
-}
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; }
 
 /* Text inside the card */
 .carousel-card p {
@@ -243,7 +239,7 @@ body {
     margin-top: 10px;
 }
 
-/* Arrow Button Styles */
+/* Arrow Button */
 .arrow-left, .arrow-right {
     position: absolute;
     top: 50%;
@@ -255,7 +251,7 @@ body {
     z-index: 10;
     transform: translateY(-50%);
     padding: 10px;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.5); 
     border-radius: 50%;
 }
 
@@ -267,7 +263,7 @@ body {
     right: 10px;
 }
 
-/* Button hover effect */
+/* button hover */
 .arrow-left:hover, .arrow-right:hover {
     background-color: rgba(0, 0, 0, 0.7);
 }
@@ -277,67 +273,60 @@ body {
     text-align: center;
     font-weight: bold;
 }
-
-/* Font style for Bad Bunny */
+/* 
 .bad-bunny {
     font-family: 'Comic Sans MS', sans-serif;
 }
 
-/* Font style for Beyoncé */
 .beyonce {
     font-family: 'Dancing Script', cursive;
 }
 
-/* Font style for Taylor Swift */
 .taylor-swift {
     font-family: 'Montserrat', sans-serif;
 }
 
-/* Font style for Morgan Wallen */
 .morgan-wallen {
     font-family: 'Abril Fatface', serif;
 }
 
-/* Font style for Sabrina Carpenter */
 .sabrina-carpenter {
     font-family: 'Quicksand', sans-serif;
 }
 
-/* Font style for Echo Blue Music */
 .echo-blue-music {
     font-family: 'Pacifico', cursive;
 }
 
-/* Font style for Kanye */
 .kanye {
     font-family: 'Anton', sans-serif;
 }
 
-/* Font style for Travis Scott */
+
 .travis-scott {
     font-family: 'Exo', sans-serif;
 }
 
-/* Font style for Luke Combs */
+
 .luke-combs {
     font-family: 'Roboto Slab', serif;
 }
 
-/* Font style for Prince */
+
 .prince {
     font-family: 'Cinzel', serif;
 }
 
-/* Font style for Lady Gaga */
+
 .lady-gaga {
     font-family: 'Amatic SC', cursive;
-}
+} */
 
 .mood-section {
     position: relative;
-    z-index: 1; /* Content stays above background */
+    z-index: 1; 
     overflow: hidden;
-    margin-bottom: 2rem; /* Space above parallax */
+    margin-bottom: 2rem; 
     padding: 2rem;
     background: #0a1e34;
     color: white;
@@ -362,13 +351,13 @@ body {
     padding: 0.5rem;
   }
   
-  /* Loading message */
+
   #song-loading {
     font-size: 1.2rem;
     margin-top: 1rem;
   }
   
-  /* Song display area */
+
   #song-display img {
     width: 200px;
     height: 200px;
@@ -463,7 +452,7 @@ body {
   
   .echo-logo {
     width: 100%;
-    max-width: 160px; /* Matches button width */
+    max-width: 160px; 
     height: auto;
     display: block;
   }
@@ -563,7 +552,7 @@ body {
   /*------------------------------------------------*/
   /* Parallax Section */
 .parallax-section {
-    background-image: url('./img/ChatGPT\ Image\ Apr\ 17\,\ 2025\,\ 06_34_46\ PM.png'); /* Replace with your image path */
+    background-image: url('./img/ChatGPT\ Image\ Apr\ 17\,\ 2025\,\ 06_34_46\ PM.png'); 
     min-height: 700px;
     background-attachment: fixed;
     background-position: center;
@@ -606,3 +595,53 @@ body {
     font-size: 0.85rem;
   }
   
+
+
+
+  /* lsit of music */
+#full-music-list {
+  margin-top: 2rem;
+}
+
+
+#view-mode-toggle {
+  display: inline-block;
+  margin-bottom: 1rem;
+  background-color: #f58f29;
+  color: white;
+  padding: 0.4rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#view-mode-toggle:hover {
+  background-color: #d7761d;
+}
+
+
+#full-music-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#full-music-list th,
+#full-music-list td {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+#full-music-list th {
+  background-color: #008af8;
+  color: white;
+}
+
+.dark-mode #full-music-list th {
+  background-color: #264d73;
+}
+
+.dark-mode #full-music-list td {
+  color: white;
+}
