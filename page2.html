@@ -1,37 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
 <body>
-    <!--Main page 2-->
-    <section class="main-body">
-        <div class="body-container">
-            <div class="left-container">
-                <div class="left-playlist"></div>
-                <div class="left-input"></div>
-                <div class="left-input-button"></div>
-                <div class="left-image"></div>
-                <div class="left-links"></div>
-                <div class="left-text"></div>
-            </div>
-            <div class="right-container">
-                <div class="right-api"></div>
-                <div class="right-text"></div>
-            </div>
-        </div>
+    <button id="dark-mode-toggle">Toggle Dark Mode</button>
+  
+    <!-- Playlist Builder -->
+    <section>
+      <h2>Build a Playlist</h2>
+      <label for="genre-select">Genre:</label>
+      <select id="genre-select"></select>
+  
+      <label for="artist-select">Artist:</label>
+      <select id="artist-select"></select>
+  
+      <label for="album-select">Album:</label>
+      <select id="album-select"></select>
+  
+      <label for="playlist-name">Playlist Name:</label>
+      <input type="text" id="playlist-name" />
+  
+      <button id="add-to-playlist">Add to Playlist</button>
+  
+      <ul id="playlist-display"></ul>
     </section>
-
-
-
-
-
-
-
-
-
-</body>
-</html>
+  
+    <!-- Album Comparison -->
+    <section>
+      <h2>Compare Two Albums</h2>
+      <select id="compare-album-1"></select>
+      <select id="compare-album-2"></select>
+      <button id="compare-button">Compare</button>
+      <div id="comparison-result"></div>
+    </section>
+  
+    <!-- Search -->
+    <section>
+      <h2>Search Music</h2>
+      <input type="text" id="search-input" placeholder="Search for artist or album" />
+      <button id="search-button">Search</button>
+      <ul id="search-results"></ul>
+    </section>
+  
+    <!-- Full List with Toggle -->
+    <section>
+      <h2>Top 100 Albums</h2>
+      <button id="view-mode-toggle">Toggle View</button>
+      <div id="full-music-list"></div>
+    </section>
+  
+    <!-- Load your script -->
+    <script src="page2.js"></script>
+  </body>
+  
